@@ -1,0 +1,239 @@
+.homeContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.postItem {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.postHeader {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.postAvatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.postUsername {
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.postContent {
+  position: relative;
+}
+
+.postImage {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.postVideoContainer {
+  position: relative;
+}
+
+.postVideo {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.videoControls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.soundButton {
+  cursor: pointer;
+}
+
+.soundMutedIcon,
+.soundOnIcon,
+.playIcon {
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+}
+
+.soundMutedIcon {
+  background: url('https://img.icons8.com/ios-filled/24/mute.png');
+}
+
+.soundOnIcon {
+  background: url('https://img.icons8.com/ios-filled/24/speaker.png');
+}
+
+.playOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.playIcon {
+  background: url('https://img.icons8.com/ios-filled/50/ffffff/play.png');
+  width: 50px;
+  height: 50px;
+}
+
+.postActions {
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+}
+
+.actionItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.actionItem.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.likeIcon,
+.commentIcon,
+.shareIcon {
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  margin-right: 5px;
+}
+
+.likeIcon {
+  background: url('https://img.icons8.com/ios-filled/24/heart.png');
+}
+
+.commentIcon {
+  background: url('https://img.icons8.com/ios-filled/24/comments.png');
+}
+
+.shareIcon {
+  background: url('https://img.icons8.com/ios-filled/24/share.png');
+}
+
+.postCaption {
+  padding: 10px;
+}
+
+.postCaption p {
+  margin: 0;
+}
+
+.loadMoreButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.loadMoreButton:hover {
+  background: #0056b3;
+}
+
+.commentModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.commentModalContent {
+  background: #fff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.commentsList {
+  margin: 20px 0;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.commentUsername {
+  font-weight: 600;
+}
+
+.commentText {
+  margin-top: 5px;
+}
+
+.commentInputContainer {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.commentInput {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background: #0056b3;
+}

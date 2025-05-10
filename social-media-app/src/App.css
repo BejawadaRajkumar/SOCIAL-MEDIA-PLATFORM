@@ -1,0 +1,241 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background-color: #333;
+  color: white;
+  padding: 5px 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoicon {
+  width: 40px;
+  height: 40px;
+}
+
+.logo-text {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.login-btn, .signup-btn {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.login-btn:hover {
+  background-color: #1df201;
+} 
+
+.signup-btn:hover {
+  background-color: #f20101;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  color: white;
+  font-size: 24px;
+}
+
+.background-video:focus {
+  outline: none;
+  pointer-events: none;
+}
+
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal .modal-content {
+  background: white;
+  display: flex;
+  width: 500px;
+  height: 350px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Login Modal Specific Styles (UNCHANGED) */
+.login-modal-left {
+  background-color: #2a2d30;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+}
+
+.login-modal-left img {
+  width: 110px;
+  height: 110px;
+}
+
+.login-modal-left .modal-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+.modal-login-btn
+{
+  width: 85%;
+  padding: 10px;
+  background-color: #074485;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.modal-login-btn:hover {
+  background-color: #ff4500;
+}
+.login-modal-right {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Signup Modal Specific Styles (UPDATED) */
+.signup-modal-left {
+  background-color: #1f1f1f;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+}
+
+.signup-modal-left img {
+  width: 100px;
+  height: 100px;
+}
+
+.signup-modal-left .modal-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.signup-modal-right {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 1px;
+}
+.signup-modal-right h3 {
+  font-size: 28px; /* Adjust size as needed */
+  margin-bottom: 10px; /* Reduce spacing */
+  margin-top: 5px;
+}
+
+.input-field {
+  width: 85%;
+  padding: 8px;
+  margin: 9px 0;
+  border: 1px solid #77cdff;
+  border-radius: 5px;
+}
+
+.modal-signup-btn {
+  width: 85%;
+  padding: 10px;
+  background-color: #074485;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.modal-signup-btn:hover {
+  background-color: #ff4500;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+.forgot-password-container {
+  margin-left: -120px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.forgot-password-link {
+  font-size: 0.5rem;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+  color: #ff0000;
+}

@@ -1,0 +1,211 @@
+.chatContainer {
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #E6F0FA; /* Light blue-gray background from screenshot */
+    min-height: 100vh;
+  }
+  
+  .userList {
+    margin-bottom: 20px;
+  }
+  
+  .userList h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .userCard {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .userImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .userName {
+    font-weight: 500;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  .chatButton {
+    background-color: #A3BFFA; /* Light blue from screenshot */
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+  }
+  
+  .chatButton:hover {
+    background-color: #4C8BF5; /* Darker blue for hover/active state */
+    color: white;
+  }
+  
+  .chatInterface {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+  }
+  
+  .chatHeader {
+    background-color: #4C8BF5; /* Darker blue for header */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .chatHeader h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .backButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .backButton:hover {
+    color: #ddd;
+  }
+  
+  .messageArea {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #E6F0FA; /* Matching theme background */
+  }
+  
+  .message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .message.received {
+    justify-content: flex-start;
+  }
+  
+  .message.sent {
+    justify-content: flex-end;
+  }
+  
+  .messageBubble {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .messageBubble.received {
+    background-color: #A3BFFA; /* Light blue for received messages */
+    margin-left: 10px;
+  }
+  
+  .messageBubble.sent {
+    background-color: #4C8BF5; /* Darker blue for sent messages */
+    color: white;
+    margin-right: 10px;
+  }
+  
+  .messageContent {
+    font-size: 1rem;
+  }
+  
+  .messageTime {
+    font-size: 0.75rem;
+    color: #666; /* Muted gray for time */
+    margin-top: 5px;
+    text-align: right;
+  }
+  
+  .profilePic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .senderName {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .inputArea {
+    display: flex;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ddd;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .messageInput {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    margin-right: 10px;
+    background-color: white;
+    font-size: 1rem;
+  }
+  
+  .messageInput:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sendButton {
+    background-color: #A3BFFA; /* Light blue button */
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .sendButton:hover {
+    background-color: #4C8BF5; /* Darker blue on hover */
+    color: white;
+  }

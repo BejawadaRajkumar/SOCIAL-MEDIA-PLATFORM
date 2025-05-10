@@ -1,0 +1,169 @@
+.profile {
+    padding: 20px;
+    background-color: #F5F5F5;
+  }
+  
+  .profileHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profileImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .userInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .username {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  
+  .editProfilePic {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-bottom: 10px;
+    border-radius: 9px;
+  }
+  .editProfilePic:hover
+  {
+    background-color: #87CEEB;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .tab {
+    background-color: #ADD8E6;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    border-radius: 1.5px;
+  }
+  
+  .tabActive {
+    background-color: #87CEEB;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background-color: #F5F5F5;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .modalButtons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .modalButton {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .tabContent {
+    margin-top: 20px;
+  }
+  
+  .followersList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .followerCard {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .followerImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .followerInfo {
+    flex: 1;
+  }
+  
+  .followerName {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+  }
+  
+  .followerEmail {
+    font-size: 14px;
+    color: #666666;
+  }
+  
+  .tabContent h3 {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  .settingsSection {
+  margin-bottom: 20px;
+}
+.dangerZone {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid #ff4d4f;
+  border-radius: 5px;
+}
+.uneditableInput {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
