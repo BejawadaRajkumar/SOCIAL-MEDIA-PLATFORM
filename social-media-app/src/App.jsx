@@ -138,6 +138,7 @@ class App extends Component {
   };
   
 
+  
   forgetPassword()
   {
      username.style.border="";
@@ -150,6 +151,8 @@ class App extends Component {
      let url="http://localhost:8057/users/forgetpassword/"+username.value;
       callApi("GET",url,"",this.forgetpasswordResponse);
   }
+
+
   forgetpasswordResponse(res)
   {
     let data=res.split('::');
@@ -163,6 +166,8 @@ class App extends Component {
      responseDiv1.innerHTML=`<br/><br/><label style='color:red'>${data[1]}<label/>`;
     }
   }
+
+
 
   render() {
     return (
@@ -203,10 +208,12 @@ class App extends Component {
                 <input type="password" id="login-password" placeholder="Password" className="input-field" />
 
                 <div className="forgot-password-container">
-                  <a href="#" className="forgot-password-link" onClick={this.forgetPassword}>
-                    Forgot Password?
-                  </a>
-                </div>
+  <a href="#" className="forgot-password-link" onClick={this.forgetPassword}>
+    Forgot Password?
+  </a>
+  <div id="forgot-response" className="forgot-response-message"></div>
+</div>
+
 
                 <button className="modal-login-btn" onClick={this.login}>Login</button>
               </div>

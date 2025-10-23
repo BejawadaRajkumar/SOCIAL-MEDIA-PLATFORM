@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getSession, callApi } from './api';
 import styles from './Home.module.css';
 
-// Parse JWT token (reused from Reels.jsx)
 const parseJwt = (token) => {
   try {
     const base64Url = token.split('.')[1];
@@ -28,12 +27,10 @@ const Home = () => {
   const [showCommentModal, setShowCommentModal] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [commentText, setCommentText] = useState('');
-  const [playing, setPlaying] = useState({});
-  const [muted, setMuted] = useState({});
   const [skip, setSkip] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-  const videoRefs = useRef({});
   const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
     const token = getSession('userSession');
@@ -41,35 +38,66 @@ const Home = () => {
       navigate('/login');
       return;
     }
+    console.log('Token used:', token);
     const parsedToken = parseJwt(token);
     setCurrentUser(parsedToken);
-    fetchPosts(token, skip);
-  }, [skip, navigate]);
+    if (id) {
+      fetchSpecificPost(token, id);
+    }
+  }, [id, navigate]);
+
+  useEffect(() => {
+    const token = getSession('userSession');
+    if (!id && token) {
+      fetchPosts(token, skip);
+    }
+  }, [skip, id, navigate]);
+
+  const fetchSpecificPost = (token, postId) => {
+    const headers = { Authorization: `Bearer ${token}` };
+    callApi('GET', `http://localhost:8090/api/posts/${postId}`, null, (response) => {
+      console.log('Raw response for specific post:', response);
+      try {
+        const postData = JSON.parse(response);
+        if (postData.postType === 'image') {
+          setPosts([postData]);
+          setHasMore(false);
+          const uniqueEmails = new Set([postData.userEmail]);
+          postData.comments.forEach(comment => uniqueEmails.add(comment.userEmail));
+          fetchUserDetails([...uniqueEmails], headers);
+        } else {
+          console.log('Requested post is not an image');
+          setPosts([]);
+        }
+      } catch (error) {
+        console.error('Error parsing specific post:', error);
+        setPosts([]);
+      }
+    }, headers);
+  };
 
   const fetchPosts = (token, skipValue) => {
     const headers = { Authorization: `Bearer ${token}` };
     callApi('GET', `http://localhost:8090/api/home-posts?skip=${skipValue}`, null, (response) => {
+      console.log('Raw response from /api/home-posts:', response);
       try {
         const postsData = JSON.parse(response);
-        if (postsData.length < 5) setHasMore(false);
-        setPosts(prev => [...prev, ...postsData]);
+        if (!Array.isArray(postsData)) {
+          console.error('Response is not an array:', postsData);
+          setPosts([]);
+          return;
+        }
+        const imagePosts = postsData.filter(post => post.postType === 'image');
+        if (imagePosts.length < 5) setHasMore(false);
+        setPosts(prev => [...prev, ...imagePosts]);
 
-        const initialPlayingState = {};
-        const initialMutedState = {};
-        postsData.forEach(post => {
-          initialPlayingState[post._id] = false;
-          initialMutedState[post._id] = true;
-        });
-        setPlaying(prev => ({ ...prev, ...initialPlayingState }));
-        setMuted(prev => ({ ...prev, ...initialMutedState }));
-
-        const uniqueEmails = new Set(postsData.map(post => post.userEmail));
-        postsData.forEach(post => {
+        const uniqueEmails = new Set(imagePosts.map(post => post.userEmail));
+        imagePosts.forEach(post => {
           post.comments.forEach(comment => uniqueEmails.add(comment.userEmail));
         });
         fetchUserDetails([...uniqueEmails], headers);
       } catch (error) {
-        console.error('Error parsing posts:', error);
+        console.error('Error parsing posts response:', error);
         setPosts([]);
       }
     }, headers);
@@ -94,8 +122,6 @@ const Home = () => {
             } catch (error) {
               console.error(`Error parsing user for ${email}:`, error);
             }
-          } else {
-            console.error(`Error fetching user for ${email}:`, message);
           }
           resolve();
         }, headers);
@@ -149,29 +175,6 @@ const Home = () => {
     setShowCommentModal(true);
   };
 
-  const togglePlay = (postId, e) => {
-    e.stopPropagation();
-    const video = videoRefs.current[postId];
-    if (!video) return;
-
-    if (playing[postId]) {
-      video.pause();
-      setPlaying(prev => ({ ...prev, [postId]: false }));
-    } else {
-      video.play().catch(e => console.error('Playback failed:', e));
-      setPlaying(prev => ({ ...prev, [postId]: true }));
-    }
-  };
-
-  const toggleMute = (postId, e) => {
-    e.stopPropagation();
-    const video = videoRefs.current[postId];
-    if (!video) return;
-
-    video.muted = !video.muted;
-    setMuted(prev => ({ ...prev, [postId]: video.muted }));
-  };
-
   const loadMorePosts = () => {
     setSkip(prev => prev + 5);
   };
@@ -187,35 +190,7 @@ const Home = () => {
             <span className={styles.postUsername}>{users[post.userEmail]?.fullName || post.userEmail}</span>
           </div>
           <div className={styles.postContent}>
-            {post.postType === 'image' ? (
-              <img src={post.url} alt={post.name} className={styles.postImage} />
-            ) : (
-              <div className={styles.postVideoContainer}>
-                <video
-                  ref={el => { videoRefs.current[post._id] = el; }}
-                  src={post.url}
-                  className={styles.postVideo}
-                  loop
-                  playsInline
-                  muted={muted[post._id]}
-                  onClick={(e) => togglePlay(post._id, e)}
-                />
-                <div className={styles.videoControls}>
-                  <div className={styles.soundButton} onClick={(e) => toggleMute(post._id, e)}>
-                    {muted[post._id] ? (
-                      <div className={styles.soundMutedIcon}></div>
-                    ) : (
-                      <div className={styles.soundOnIcon}></div>
-                    )}
-                  </div>
-                  {!playing[post._id] && (
-                    <div className={styles.playOverlay}>
-                      <div className={styles.playIcon}></div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
+            <img src={post.url} alt={post.name} className={styles.postImage} />
             <div className={styles.postActions}>
               <div
                 className={`${styles.actionItem} ${post.likes.includes(currentUser?.email) ? styles.disabled : ''}`}
@@ -251,7 +226,7 @@ const Home = () => {
             <button className={styles.closeButton} onClick={() => setShowCommentModal(false)}>X</button>
             <h3>Comments</h3>
             <div className={styles.commentsList}>
-              {posts.find(post => post._id === selectedPostId).comments.map((comment, index) => (
+              {posts.find(post => post._id === selectedPostId)?.comments.map((comment, index) => (
                 <div key={index} className={styles.comment}>
                   <span className={styles.commentUsername}>
                     {users[comment.userEmail]?.fullName || comment.userEmail}
