@@ -352,7 +352,7 @@ spring.jpa.hibernate.ddl-auto=update
 
 | Method | Path | Auth | Description |
 |---|---|---|---|
-| POST | `/users/signup` | None | Register; returns `200::Registration done successfully` or `401::email id already exits` |
+| POST | `/users/signup` | None | Register; returns `200::Registration done successfully` or `401::email id already exists` |
 
 ---
 
